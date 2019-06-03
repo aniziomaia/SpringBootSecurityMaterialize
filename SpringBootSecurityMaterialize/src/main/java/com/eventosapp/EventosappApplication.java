@@ -22,7 +22,7 @@ public class EventosappApplication extends SpringBootServletInitializer{
 	public static void main(String[] args) {
 		SpringApplication.run(EventosappApplication.class, args);
 		//System.out.print(new BCryptPasswordEncoder().encode("123"));
-		System.out.print("##:SENHA CRIPTOGRAFADA:## " + new BCryptPasswordEncoder().encode("root")); 
+		System.out.print("SENHA CRIPTOGRAFADA:## " + new BCryptPasswordEncoder().encode("root")); 
 	}
 	
 	@Override
