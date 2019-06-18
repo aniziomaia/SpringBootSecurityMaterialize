@@ -21,15 +21,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.csrf().disable().authorizeRequests()
-		.antMatchers(HttpMethod.GET,  "/").permitAll()//pagina index liberada para todos
-		.antMatchers(HttpMethod.GET,  "/listaEvento").hasRole("ADMIN")//metodo do controller restringido
-		.antMatchers(HttpMethod.POST, "/listaEvento").hasRole("ADMIN")//metodo do controller restringido
-		.antMatchers(HttpMethod.GET,  "/cadastrarEvento").hasAnyRole("ADMIN")//metodo do controller restringido
-		.antMatchers(HttpMethod.POST, "/cadastrarEvento").hasAnyRole("ADMIN")//metodo do controller restringido
+		.antMatchers(HttpMethod.GET,  "/**").permitAll()//pagina index liberada para todos
+//		.antMatchers(HttpMethod.GET,  "/listaEvento").hasRole("ADMIN")//metodo do controller restringido
+//		.antMatchers(HttpMethod.POST, "/listaEvento").hasRole("ADMIN")//metodo do controller restringido
+//		.antMatchers(HttpMethod.GET,  "/cadastrarEvento").hasAnyRole("ADMIN")//metodo do controller restringido
+//		.antMatchers(HttpMethod.POST, "/cadastrarEvento").hasAnyRole("ADMIN")//metodo do controller restringido
 		.anyRequest().authenticated()
-		//.and().formLogin().permitAll()//fomulario de login do spring
-		.and().formLogin().loginPage("/entrar").permitAll()//fomulario de login personalizado
-		.and().logout().logoutSuccessUrl("/entrar?logout")//desloga pelo botao sair
+		.and().formLogin().permitAll()//fomulario de login do spring
+		//.and().formLogin().loginPage("/entrar").permitAll()//fomulario de login personalizado
+		//.and().logout().logoutSuccessUrl("/entrar?logout")//desloga pelo botao sair
 		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));//desloga pela url (http://localhost:8080/entrar?logout)
 		
 	}

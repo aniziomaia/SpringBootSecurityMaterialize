@@ -7,4 +7,5 @@ import com.eventosapp.models.Usuario;
 public interface UsuarioRepository extends CrudRepository<Usuario, String>{
 
 	Usuario findByLogin(String login);
+	Usuario findBySenha(String senha);
 }

@@ -9,8 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,9 +23,12 @@ private static final long serialVersionUID = 1L;
 	@Id
 	private String login;
 	
+	@NotBlank
+	@NonNull
 	private String nomeCompleto;
 	
-	@NotEmpty
+	@NotBlank
+	@NonNull
 	private String senha;
 	
 	@ManyToMany

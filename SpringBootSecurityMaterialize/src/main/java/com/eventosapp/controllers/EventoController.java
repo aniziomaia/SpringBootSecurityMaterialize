@@ -4,9 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +17,6 @@ import com.eventosapp.repository.ConvidadoRepository;
 import com.eventosapp.repository.EventoRepository;
 
 @Controller
-//@RequestMapping("/eventosapp")
 public class EventoController {
 
 	@Autowired
@@ -28,14 +25,19 @@ public class EventoController {
 	@Autowired
 	private ConvidadoRepository cr;
 	
+	/**
+	 * so redireciona para o forma de cadastro de evento
+	 * @return
+	 */
 	@RequestMapping(value="/cadastrarEvento", method=RequestMethod.GET)
 	public String form(){
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>cadastrarEvento<<<<<<<<<<<<<<<<<<<");
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>cadastrarEvento<<<<<<<<<<<<<<<<<<<evento/formEvento");
 		return "evento/formEvento";
 	}
 	
 	@RequestMapping(value="/cadastrarEvento", method=RequestMethod.POST)
 	public String form(@Valid Evento evento, BindingResult result, RedirectAttributes attributes){
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>cadastrarEvento<<<<<<<<<<<<<<<<<<<cadastrarEvento");
 		if(result.hasErrors()){
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/cadastrarEvento";
@@ -48,6 +50,7 @@ public class EventoController {
 	
 	@RequestMapping("/eventos")
 	public ModelAndView listaEventos(){
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>listaEventos<<<<<<<<<<<<<<<<<<<eventos");
 		ModelAndView mv = new ModelAndView("listaEventos");
 		Iterable<Evento> eventos = er.findAll();
 		mv.addObject("eventos", eventos);
@@ -56,7 +59,7 @@ public class EventoController {
 	
 	@RequestMapping(value="/{codigo}", method=RequestMethod.GET)
 	public ModelAndView detalhesEvento(@PathVariable("codigo") long codigo){
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>EventoController.detalhesEvento");
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>detalhesEvento");
 		Evento evento = er.findByCodigo(codigo);
 		ModelAndView mv = new ModelAndView("evento/detalhesEvento");
 		mv.addObject("evento", evento);
@@ -69,6 +72,7 @@ public class EventoController {
 	
 	@RequestMapping("/deletarEvento")
 	public String deletarEvento(long codigo){
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>deletarEvento");
 		Evento evento = er.findByCodigo(codigo);
 		er.delete(evento);
 		return "redirect:/eventos";
@@ -91,6 +95,7 @@ public class EventoController {
 	
 	@RequestMapping("/deletarConvidado")
 	public String deletarConvidado(String rg){
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>EventoController.deletarConvidado");
 		Convidado convidado = cr.findByRg(rg);
 		cr.delete(convidado);
 		

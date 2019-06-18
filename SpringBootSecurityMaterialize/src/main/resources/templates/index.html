@@ -20,9 +20,7 @@
 		    <div class="nav-wrapper">
 		      <a href="#" class="brand-logo">Lista de Eventos</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		      <!-- deveria esconder quando nao tiver autorizado, mas nao funciona ainda
-		         deveria funcionar com framework thymeleaf declarado no inicioa da pagina-->
-		        <li sec:authorize="hasRole('ADMIN')"><a href="/cadastrarEvento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Evento.</a></li>
+		      
 		        <li><a href="/logout" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Sair</a></li>
 		      </ul>
 		    </div>
@@ -31,7 +29,13 @@
 	</header>
 	
 	<h1>Sistema para cadastro de eventos!!</h1>
-	<h3>FaÃ§a seu Login e cadastre seus eventos e listas de convidados!</h3>
+	<h3>Faça seu Login e cadastre seus eventos e listas de convidados!</h3>
+	
+	<!-- deveria esconder quando nao tiver autorizado, mas nao funciona ainda
+    deveria funcionar com framework thymeleaf declarado no inicioa da pagina-->
+    <li><a href="/cadastrarUsuario" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Usuario.</a></li>
+    <li></li>
+    <li><a href="/cadastrarEvento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Eventos.</a></li>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
