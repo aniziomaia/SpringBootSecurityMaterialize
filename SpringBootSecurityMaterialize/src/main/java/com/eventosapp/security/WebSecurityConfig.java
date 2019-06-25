@@ -20,8 +20,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		http.csrf().disable().authorizeRequests()
-		.antMatchers(HttpMethod.GET,  "/**").permitAll()//pagina index liberada para todos
+		http.csrf().disable().authorizeRequests() 
+		.antMatchers(HttpMethod.GET,  "/**").permitAll()//TODAS AS pagina liberada para todos
+//		.antMatchers(HttpMethod.GET,  "/").permitAll()//pagina index liberada para todos
 //		.antMatchers(HttpMethod.GET,  "/listaEvento").hasRole("ADMIN")//metodo do controller restringido
 //		.antMatchers(HttpMethod.POST, "/listaEvento").hasRole("ADMIN")//metodo do controller restringido
 //		.antMatchers(HttpMethod.GET,  "/cadastrarEvento").hasAnyRole("ADMIN")//metodo do controller restringido
@@ -30,7 +31,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.and().formLogin().permitAll()//fomulario de login do spring
 		//.and().formLogin().loginPage("/entrar").permitAll()//fomulario de login personalizado
 		//.and().logout().logoutSuccessUrl("/entrar?logout")//desloga pelo botao sair
-		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));//desloga pela url (http://localhost:8080/entrar?logout)
+		//desloga pela url sem usar action no controller (http://localhost:8080/entrar?logout)
+		//basta que qualquer chamada a /logout --> parece aque as vezes nao funciona
+		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 		
 	}
 	
